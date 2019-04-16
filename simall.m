@@ -61,15 +61,26 @@ quiver(xskip, yskip, axskip, ayskip)
 plot(0, 0, '.')
 legend('Orbit', 'Velocity', 'Acceleration', 'Planet')
 plot(xunit, yunit)
+title('Satellite orbit')
+xlabel('x')
+ylabel('y')
 
 figure(2)
 plot(E_k)
 hold on
 plot(E_p)
 plot(E)
+legend('E_k', 'E_p', 'E')
+title('Energies in the system')
+xlabel('t')
+ylabel('Energy level')
 
 figure(3)
 plot(P)
+legend('P')
+title('Momentum')
+xlabel('t')
+ylabel('Energy level')
 
 %%%%%%%
 % ISS %
@@ -89,7 +100,6 @@ EARTH_vy0 = 0;
 EARTH_x0 = 0;
 EARTH_y0 = 0;
 
-
 dt = 0.1;
 tmax = 7000;
 
@@ -99,6 +109,10 @@ figure(4)
 plot(x(2, :), y(2,:))
 hold on
 plot(x(1,:), y(1,:), '*')
+legend('ISS','Earth')
+title('ISS orbit around Earth')
+xlabel('x')
+ylabel('y')
 
 t = 0:dt:tmax;
 T = calc_time(x(2,:), y(2,:),t)/(3600*24)
@@ -111,12 +125,11 @@ G = 6.67*10^(-11);
 
 AU = 1.496*10^11;
 
-EARTH_mass = 5.972*10^24;
-EARTH_vx0 = 0;
-EARTH_vy0 = 30*10^3;
-EARTH_r = 6.3781*10^6;
-EARTH_x0 = AU;
-EARTH_y0 = 0;
+SUN_mass = 1.9885*10^30;
+SUN_vx0 = 0;
+SUN_vy0 = 0;
+SUN_x0 = 0;
+SUN_y0 = 0;
 
 MERC_mass = 0.0553*EARTH_mass;
 MERC_vx0 = 0;
@@ -132,6 +145,13 @@ VENU_r = 6.3781*10^6;
 VENU_x0 = 0.723*AU;
 VENU_y0 = 0;
 
+EARTH_mass = 5.972*10^24;
+EARTH_vx0 = 0;
+EARTH_vy0 = 30*10^3;
+EARTH_r = 6.3781*10^6;
+EARTH_x0 = AU;
+EARTH_y0 = 0;
+
 MARS_mass = 0.11*EARTH_mass;
 MARS_vx0 = 0;
 MARS_vy0 = 24.08*10^3;
@@ -139,11 +159,7 @@ MARS_r = 6.3781*10^6;
 MARS_x0 = 1.524*AU;
 MARS_y0 = 0;
 
-SUN_mass = 1.9885*10^30;
-SUN_vx0 = 0;
-SUN_vy0 = 0;
-SUN_x0 = 0;
-SUN_y0 = 0;
+
 
 MASS =  [SUN_mass   MERC_mass   VENU_mass   EARTH_mass  MARS_mass];
 X0 =    [SUN_x0     MERC_x0     VENU_x0     EARTH_x0    MARS_x0];
@@ -164,6 +180,10 @@ plot(x(2, :), y(2,:))
 plot(x(3, :), y(3,:))
 plot(x(4, :), y(4,:))
 plot(x(5, :), y(5,:))
+legend('Sun','Mercury','Venus','Earth','Mars')
+title('Solar system')
+xlabel('x')
+ylabel('y')
 
 T = [];
 for i=2:5
